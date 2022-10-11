@@ -35,6 +35,8 @@ kotlin {
         isMingwX64 -> mingwX64("native")
         else -> throw GradleException("Host OS is not supported in Kotlin/Native.")
     }
+    iosArm64()
+    iosSimulatorArm64()
 
 
     sourceSets {
@@ -49,6 +51,16 @@ kotlin {
         val jsMain by getting
         val jsTest by getting
         val nativeMain by getting {
+            dependencies {
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+            }
+        }
+        val iosArm64Main by getting {
+            dependencies {
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+            }
+        }
+        val iosSimulatorArm64Main by getting{
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
             }
