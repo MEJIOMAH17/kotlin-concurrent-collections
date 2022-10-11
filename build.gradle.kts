@@ -37,8 +37,6 @@ kotlin {
     }
     iosArm64()
     iosSimulatorArm64()
-
-
     sourceSets {
         val commonMain by getting
         val commonTest by getting {
@@ -50,22 +48,15 @@ kotlin {
         val jvmTest by getting
         val jsMain by getting
         val jsTest by getting
-        val nativeMain by getting {
+        val iosArm64Main by getting
+        val iosSimulatorArm64Main by getting
+        val nativeMain by getting{
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
             }
+            iosArm64Main.dependsOn(this)
+            iosSimulatorArm64Main.dependsOn(this)
         }
-        val iosArm64Main by getting {
-            dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
-            }
-        }
-        val iosSimulatorArm64Main by getting{
-            dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
-            }
-        }
-        val nativeTest by getting
     }
 }
 publishing {
