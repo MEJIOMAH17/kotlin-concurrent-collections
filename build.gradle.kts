@@ -1,5 +1,5 @@
 plugins {
-    kotlin("multiplatform") version "1.7.0"
+    kotlin("multiplatform") version "1.7.20"
     `maven-publish`
 }
 
@@ -36,6 +36,7 @@ kotlin {
         else -> throw GradleException("Host OS is not supported in Kotlin/Native.")
     }
     iosArm64()
+    iosX64()
     iosSimulatorArm64()
     sourceSets {
         val commonMain by getting
@@ -49,11 +50,16 @@ kotlin {
         val jsMain by getting
         val jsTest by getting
         val iosArm64Main by getting
+        val iosX64Main by getting
         val iosSimulatorArm64Main by getting
-        val nativeMain by getting{
+        val nativeMain by getting
+        val commonNativeMain by creating{
+            dependsOn(commonMain)
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
             }
+            nativeMain.dependsOn(this)
+            iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
         }
