@@ -29,4 +29,4 @@ jobs:
         with:
           java-version: 17
       - name: Build with Gradle
-        run: ./gradlew -PgithubToken=${{ secrets.GITHUB_TOKEN }} publish
+        run: ./gradlew -PgithubToken=${{ secrets.GITHUB_TOKEN }} -PgithubUser=MEJIOMAH17 publish
